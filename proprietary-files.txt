@@ -239,7 +239,10 @@ usr/keylayout/synaptics_rmi4_i2c.kl
 
 
 #wifi
+etc/wifi/p2p_supplicant.conf
 etc/wifi/p2p_supplicant_overlay.conf
+etc/wifi/wifi_config.xml
+etc/wifi/wpa_supplicant.conf
 etc/wifi/wpa_supplicant_overlay.conf
 
 #scripts

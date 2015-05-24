@@ -67,6 +67,16 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
 on boot
+
+     #** ZTE_MODIFY pengyebin10094660, 2012-06-25, create the OMA directories, so as to enforce our permissions #
+    mkdir /data/oma 1777
+    chmod 1777 /data/oma
+    mkdir /data/oma/conf 1777
+    chmod 1777 /data/oma/conf
+    #** ZTE_MODIFY END 
+
+
+
     insmod /system/lib/modules/adsprpc.ko
     # Enable writing to led blink node from userspace
     chown system system /sys/class/leds/red/blink
@@ -164,4 +174,232 @@ service swapping /system/bin/sh /system/etc/enable_swap.sh
     class core
     user root
     oneshot
+
+
+#
+# FTM daemon for normal mode added by ZTE_BOOT_JIA_20120425 jia.jia
+#
+service ftmd-nm /system/bin/ftmdaemon-oem normalmode
+    class core
+    oneshot
+
+#
+# FTM daemon for EFS force sync added by ZTE_BOOT_JIA_20120815 jia.jia
+#
+service ftmd-fs /system/bin/ftmdaemon-oem forcesync
+    class core
+    disabled
+    user root
+    group radio
+    oneshot
+
+#
+# FTM daemon for EFS force sync added by ZTE_BOOT_JIA_20120815 jia.jia
+#
+on property:sys.ftm.forcesync=1
+    start ftmd-fs
+
+
+#hubo add for activate ztediag
+service ztediag /system/bin/ztediag
+    class late_start
+    user root
+    group radio cache inet misc audio qcom_oncrpc diag
+on property:ro.debuggable=1
+    start console
+
+#tcd add for trigger tracer startup
+    service start_tracer /system/bin/start_tracer.sh
+    class main
+    disabled
+    oneshot
+
+service stop_tracer /system/bin/stop_tracer.sh
+    class main
+    disabled
+    oneshot
+
+service assistant-daemon /system/bin/assistant
+    class late_start
+    user root
+    disabled
+    
+on property:persist.service.asnt.enable=1
+    start assistant-daemon
+
+#ZTE_RIL_RJG_20130923 Add disable sddump setting 
+on property:persist.sys.sddump.enable=0
+    write /sys/module/restart/parameters/ignore_sd_dump 1
+on property:persist.sys.sddump.enable=1
+    write /sys/module/restart/parameters/ignore_sd_dump 0
+#ZTE_RIL_RJG_20130923 end
+
+#
+# zte: adb over wifi
+#
+on property:persist.sys.wifiadb.enable=1
+    setprop service.adb.tcp.port 5555
+    stop adbd
+    start adbd
+
+#
+# zte pwrcrash
+#
+on property:persist.sys.pwrcrash.enable=1
+    write /sys/module/qpnp_power_on/parameters/pwrkey_crash 1
+
+#
+# zte pwrcrash
+#
+on property:persist.sys.pwrcrash.enable=0
+    write /sys/module/qpnp_power_on/parameters/pwrkey_crash 0
+
+#
+# zte log
+#
+on property:persist.sys.ztelog.enable=1
+    start getlog
+    start start_tracer
+    #enable to record when app enter suspend or resume lianghouxing 20130822
+    write /sys/module/msm_pm/parameters/zte_enable2record 1
+
+#
+# zte log
+#
+on property:persist.sys.ztelog.enable=0
+    stop getlog
+
+on property:sys.zte.debugutil.triggle=1
+   start debugutil
+
+
+
+#ZTE_RIL_RJG_20100804 begin,disabled
+service sdlog-daemon /system/bin/sdlog
+    class late_start
+    disabled
+    
+on property:persist.service.sdlog.enable=1
+    start sdlog-daemon
+#ZTE_RIL_RJG_20100804 end		
+
+service ms-daemon /system/bin/modemservice
+    class core
+    user root
+
+#ZTE_RIL_RJG_20140807, ADD FOR REMOTE SIMLOCK
+on property:sys.mobicoredaemon.enable=true
+    start tsdaemon
+    
+service tsdaemon /system/bin/tsdaemon
+    class main
+    user root
+    oneshot
+    disabled
+#ZTE_RIL_RJG_20140807, ADD FOR REMOTE SIMLOCK
+
+
+
+
+#zte_bt_dm_20120110 add for 7x27A_*983*24474636# chipertest
+service bluetooth_prop /system/bin/sh /system/bin/init.btprop.sh
+    class late_start 
+    oneshot
+#20120110 end
+
+# jht 20130911 add init.wlanprop.sh +++
+service wlan_prop /system/bin/sh /system/etc/init.wlanprop.sh
+    class main
+    oneshot
+# jht 20130911 add init.wlanprop.sh ---
+
+
+
+#
+# zte log
+#
+service getlog /system/bin/getlogtofile.sh
+    user root
+    disabled
+    oneshot
+
+service debugutil /system/bin/logwrapper /system/bin/debugutil.sh
+    user root
+    disabled
+    oneshot
+
+service sshd /system/bin/start-ssh
+    class main
+    disabled
+
+service mdnsd /system/bin/mdnsd
+    class main
+    user mdnsr
+    group inet net_raw
+    socket mdnsd stream 0660 mdnsr inet
+    disabled
+    oneshot
+
+#ZTE_MiaoMiao_added for backup 20131223
+service app6939 /system/bin/app6939
+    class main
+    user root
+#end ZTE_MiaoMiao_added for backup 20131223
+
+#ZTE_MIAOMIAO_PARTNERAPP
+service copypartnerapp /system/bin/copypartnerapp
+    class late_start
+    oneshot
+#end ZTE_MIAOMIAO_PARTNERAPP
+
+# jht 20131213 add for fcctest +++
+service wifi_ftmd /system/bin/wifi_ftmd
+    socket wifi_ftmd dgram 0666
+    disabled
+    oneshot
+# jht 20131213 add for fcctest ---
+
+# hubo add for ztediag screencapture
+service screencappart /system/bin/screencap /cache/capture1.bmp
+    user root
+    group cache
+    oneshot
+    disabled
+
+service screencapwhole /system/bin/screencap -p /cache/capture.bmp
+    user root
+    group cache
+    oneshot
+    disabled
+
+service reboot_recovery /system/bin/sh -c "if [ -e /cache/recovery/command ] ; then /system/bin/reboot recovery; fi"
+    class core
+    user root
+    oneshot
+#ZTE_LC_IP_DEBUG, 20130513 start	 
+on property:persist.shell.tcpip.debug=0	 
+    write /sys/kernel/debug/tcp_output_debug/enable_debug 0	 
+on property:persist.shell.tcpip.debug=1	 
+    write /sys/kernel/debug/tcp_output_debug/enable_debug 1	 
+on property:persist.shell.tcpip.debug=2	 
+    write /sys/kernel/debug/tcp_output_debug/enable_debug 2	 
+on property:persist.shell.tcpip.debug=3	 
+	write /sys/kernel/debug/tcp_output_debug/enable_debug 3	 
+#ZTE_LC_IP_DEBUG, 20130513 end 
+
+# ZTE_YJ_20130221 begin
+on property:net.tcp.windowscaling=1
+	write /proc/sys/net/ipv4/tcp_window_scaling 1
+on property:net.tcp.windowscaling=0
+	write /proc/sys/net/ipv4/tcp_window_scaling 0
+# ZTE_YJ_20130221 end
+service delete_data /system/bin/delete_data.sh
+    class main
+    disabled
+    oneshot
+
+
+
+
+
  
