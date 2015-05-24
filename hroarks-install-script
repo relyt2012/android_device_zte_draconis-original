@@ -46,6 +46,7 @@ package_extract_file("system/build.prop", "/system/build.prop");
 ui_print("Creating Symlinks");
 symlink("../xbin/su", "/system/bin/su");
 symlink("/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin", "/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_persist.bin");
+symlink("/system/lib/modules/pronto/pronto_wlan.ko", "/system/lib/modules/wlan.ko");
 symlink("/firmware/image/adsp.b00", "/system/etc/firmware/adsp.b00");
 symlink("/firmware/image/adsp.b01", "/system/etc/firmware/adsp.b01");
 symlink("/firmware/image/adsp.b02", "/system/etc/firmware/adsp.b02");
