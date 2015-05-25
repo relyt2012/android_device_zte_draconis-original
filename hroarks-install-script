@@ -45,7 +45,6 @@ ui_print("Copying system/build.prop");
 package_extract_file("system/build.prop", "/system/build.prop");
 ui_print("Creating Symlinks");
 symlink("../xbin/su", "/system/bin/su");
-symlink("/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin", "/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_persist.bin");
 symlink("/system/lib/modules/pronto/pronto_wlan.ko", "/system/lib/modules/wlan.ko");
 symlink("/firmware/image/adsp.b00", "/system/etc/firmware/adsp.b00");
 symlink("/firmware/image/adsp.b01", "/system/etc/firmware/adsp.b01");
@@ -130,7 +129,6 @@ symlink("/firmware/image/widevine.b01", "/system/etc/firmware/widevine.b01");
 symlink("/firmware/image/widevine.b02", "/system/etc/firmware/widevine.b02");
 symlink("/firmware/image/widevine.b03", "/system/etc/firmware/widevine.b03");
 symlink("/firmware/image/widevine.mdt", "/system/etc/firmware/widevine.mdt");
-symlink("/persist/WCNSS_qcom_wlan_factory_nv.bin", "/system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin");
 symlink("/system/lib/libbluetooth_jni.so", "/system/app/Bluetooth/lib/arm/libbluetooth_jni.so",
         "/system/app/BluetoothExt/lib/arm/libbluetooth_jni.so");
 symlink("/system/lib/libdefcontainer_jni.so", "/system/priv-app/DefaultContainerService/lib/arm/libdefcontainer_jni.so");
