@@ -1,55 +1,64 @@
-# system.prop for draconis
 
-# radio
-rild.libargs=-d /dev/smd0
-
-keyguard.no_require_sim=true
-ro.com.android.dateformat=MM-dd-yyyy
-ro.carrier=unknown
-qcom.bt.le_dev_pwr_class=1
-ro.bluetooth.hfp.ver=1.6
-ro.qualcomm.bt.hci_transport=smd
-camera2.portability.force_api=1
-debug.composition.type=dyn
-debug.enabletr=0
-debug.mdpcomp.logs=0
-debug.sf.hw=1
-persist.hwc.mdpcomp.enable=true
-ro.opengles.version=196608
-ro.sf.lcd_density=320
-
-#snapdragon value add features
-#
-ro.qc.sdk.audio.ssr=false
-##fluencetype can be "fluence" or "fluencepro" or "none"
+# Audio
 ro.qc.sdk.audio.fluencetype=none
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
-tunnel.audio.encode=true
-tunnel.decode=false
-tunnel.audio.encode = true
-
-#use VERY_HIGH_QUALITY for audio resampler
-af.resampler.quality=4
-
-#Buffer size in kbytes for compress offload playback
-audio.offload.buffer.size.kb=32
-
-#Enable offload audio video playback by default
-av.offload.enable=true
-
-#enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
-
-#enable dsp gapless mode by default
+audio.offload.24bit.enable=false
+audio.offload.buffer.size.kb=32
 audio.offload.gapless.enabled=true
+audio.offload.multiple.enabled=false
+audio.offload.pcm.16bit.enable=false
+audio.offload.pcm.24bit.enable=false
+av.offload.enable=false
+av.streaming.offload.enable=false
+tunnel.audio.encode=false
 
+# Camera
+camera2.portability.force_api=1
+
+# Display
+ro.sf.lcd_density=240
+ro.opengles.version=196608
+debug.composition.type=dyn
+debug.hwc.dynThreshold=1.5
+debug.sf.fb_always_on=1
+
+# GPS
+ro.qc.sdk.izat.premium_enabled=0
+ro.qc.sdk.izat.service_mask=0x0
+persist.gps.qc_nlp_in_use=0
+#persist.loc.nlp_name=com.qualcomm.services.location
 ro.gps.agps_provider=1
-ro.qc.sdk.izat.premium_enabled=1
-ro.qc.sdk.izat.service_mask=0x5
-persist.gps.qc_nlp_in_use=1
-persist.loc.nlp_name=com.qualcomm.services.location
+
+# Media
+media.aac_51_output_enabled=true
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+mmp.enable.3g2=true
+mm.enable.qcom_parser=37491
+mm.enable.smoothstreaming=true
+vidc.debug.level=1
+
+# Memory
+ro.config.low_ram=true
+config.disable_atlas=true
+ro.config.max_starting_bg=4
+persist.sys.force_highendgfx=true
+
+# Qualcomm
+ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
+ro.qualcomm.cabl=0
+ro.min_freq_0=787200
+
+# Telephony
+rild.libpath=/vendor/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
 persist.rild.nitz_long_ons_1=
@@ -59,34 +68,18 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-persist.timed.enable=true
-ro.qualcomm.cabl=0
-ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.dfr_mode_set=1
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
 persist.radio.msgtunnel.start=false
-persist.radio.no_wait_for_card=1
-rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
+ro.telephony.default_network=0
+telephony.lteOnCdmaDevice=0
+persist.data_netmgrd_mtu=1358
+persist.radio.apm_sim_not_pwdn=0
+ro.telephony.call_ring.multiple=false
 ro.use_data_netmgrd=true
-persist.sys.isUsbOtgEnabled=true
-ro.usb.mtp=0x2e82
-ro.usb.mtp_adb=0x2e76
-ro.usb.ptp=0x2e83
-ro.usb.ptp_adb=0x2e84
-ro.usb.bpt=0x2e28
-ro.usb.bpt_adb=0x2e29
-ro.usb.bpteth=0x2e2a
-ro.usb.bpteth_adb=0x2e2b
-persist.sys.qc.sub.rdump.on=1
-persist.sys.ssr.restart_level=3
-dalvik.vm.heapstartsize=8m
-dalvik.vm.heapgrowthlimit=96m
-dalvik.vm.heapsize=256m
-dalvik.vm.heaptargetutilization=0.75
-dalvik.vm.heapminfree=2m
-dalvik.vm.heapmaxfree=8m
 
-wifi.chip.type=WCN3680_KK
+# Time services
+persist.timed.enable=true
+
+# Wifi
 wifi.interface=wlan0
-
-

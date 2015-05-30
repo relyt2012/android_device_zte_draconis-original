@@ -151,10 +151,10 @@ PRODUCT_PACKAGES += \
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+$(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+$(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+$(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+$(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -210,11 +210,45 @@ PRODUCT_PACKAGES += \
 
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
-    $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin
+$(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+$(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
+$(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
+$(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin
 
+#RIL
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/ril/app/qcrilmsgtunnel/qcrilmsgtunnel.apk:system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
+$(LOCAL_PATH)/prebuilts/ril/bin/irsc_util:system/bin/irsc_util \
+$(LOCAL_PATH)/prebuilts/ril/bin/netmgrd:system/bin/netmgrd \
+$(LOCAL_PATH)/prebuilts/ril/bin/qmuxd:system/bin/qmuxd \
+$(LOCAL_PATH)/prebuilts/ril/bin/radish:system/bin/radish \
+$(LOCAL_PATH)/prebuilts/ril/bin/rfs_access:system/bin/rfs_access \
+$(LOCAL_PATH)/prebuilts/ril/bin/rild:system/bin/rild \
+$(LOCAL_PATH)/prebuilts/ril/bin/rmt_storage:system/bin/rmt_storage \
+$(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
+$(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
+$(LOCAL_PATH)/prebuilts/ril/framework/qcnvitems.jar:system/framework/qcnvitems.jar \
+$(LOCAL_PATH)/prebuilts/ril/framework/qcrilhook.jar:system/framework/qcrilhook.jar \
+$(LOCAL_PATH)/prebuilts/ril/lib/libril.so:system/lib/libril.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdiag.so:system/vendor/lib/libdiag.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsi_netctrl.so:system/vendor/lib/libdsi_netctrl.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsnetutils.so:system/vendor/lib/libdsnetutils.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsutils.so:system/vendor/lib/libdsutils.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libidl.so:system/vendor/lib/libidl.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libnetmgr.so:system/vendor/lib/libnetmgr.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqcci_legacy.so:system/vendor/lib/libqcci_legacy.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqc-opt.so:system/vendor/lib/libqc-opt.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqdi.so:system/vendor/lib/libqdi.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqdp.so:system/vendor/lib/libqdp.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi.so:system/vendor/lib/libqmi.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_cci.so:system/vendor/lib/libqmi_cci.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_client_qmux.so:system/vendor/lib/libqmi_client_qmux.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_common_so.so:system/vendor/lib/libqmi_common_so.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_csi.so:system/vendor/lib/libqmi_csi.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_encdec.so:system/vendor/lib/libqmi_encdec.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmiservices.so:system/vendor/lib/libqmiservices.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qc-qmi-1.so:system/vendor/lib/libril-qc-qmi-1.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qcril-hook-oem.so:system/vendor/lib/libril-qcril-hook-oem.so
 
 # DT Image
 PRODUCT_COPY_FILES += \

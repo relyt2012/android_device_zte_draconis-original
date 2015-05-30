@@ -25,6 +25,8 @@ vendor/lib/libaudcal.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
+vendor/lib/libacdbmapper.so
+vendor/lib/libaudioalsa.so
 etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
 etc/acdbdata/MTP/MTP_General_cal.acdb
 etc/acdbdata/MTP/MTP_Global_cal.acdb
@@ -106,42 +108,6 @@ vendor/lib/libOmxWmaDec.so
 # Perf
 bin/mpdecision
 #vendor/lib/libqc-opt.so
-
-# Qualcomm framework
-bin/irsc_util
-vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_csvt_srvc.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-
-# Radio
-bin/netmgrd
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/rild
-bin/rmt_storage
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
-framework/qcnvitems.jar
-framework/qcrilhook.jar
-lib/libril.so
-vendor/lib/libconfigdb.so
-vendor/lib/libnetmgr.so
-vendor/lib/libril-qc-qmi-1.so
-vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/libxml.so
 
 # Thermal
 bin/thermal-engine
@@ -575,8 +541,6 @@ lib/libztegiflib.so
 vendor/lib/drm/libdrmprplugin.so
 vendor/lib/hw/flp.default.so
 vendor/lib/hw/power.qcom.so
-vendor/lib/libacdbmapper.so
-vendor/lib/libaudioalsa.so
 vendor/lib/libbt-vendor.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneconn.so
