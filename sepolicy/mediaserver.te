@@ -1,2 +1,4 @@
-allow mediaserver mpdecision:unix_stream_socket connectto;
-allow mediaserver camera_device:dir search;
+# 4k2k property
+allow mediaserver camera_prop:property_service set;
+
+allow mediaserver socket_device:sock_file write;

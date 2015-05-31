@@ -74,11 +74,13 @@ TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_QCOM_DISPLAY_VARIANT := caf
 USE_SET_METADATA := false
 HAVE_ADRENO_SOURCE:= false
-#OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
-#TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_ENABLED_FM := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 #BOARD_USES_LEGACY_ALSA_AUDIO := false
 #AUDIO_FEATURE_DISABLED_DTS_EAGLE := false
 #AUDIO_FEATURE_ENABLED_ACDB_LICENSE
@@ -93,14 +95,12 @@ BOARD_USES_ALSA_AUDIO := true
 #AUDIO_FEATURE_ENABLED_EXTN_FLAC_DECODER := false
 #AUDIO_FEATURE_ENABLED_EXTN_FORMATS
 #AUDIO_FEATURE_ENABLED_FLUENCE := true
-#AUDIO_FEATURE_ENABLED_FM := true
 #AUDIO_FEATURE_ENABLED_HDMI_PASSTHROUGH
 #AUDIO_FEATURE_ENABLED_HFP := true
 #AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS
 #AUDIO_FEATURE_ENABLED_INCALL_MUSIC
 #AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := false
 #####AUDIO_FEATURE_ENABLED_LISTEN := true
-#AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 #AUDIO_FEATURE_ENABLED_MULTIPLE_TUNNEL
 #AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
 #AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24
@@ -143,50 +143,22 @@ BOARD_SEPOLICY_DIRS += \
     device/zte/draconis/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    app.te \
-    bluetooth.te \
-    bluetooth_loader.te \
-    bootanim.te \
-    bridge.te \
-    domain.te \
     file.te \
-    healthd.te \
-    hostapd.te \
+    file_contexts \
+    genfs_contexts \
+    init_shell.te \
+    kernel.te \
+    location.te \
     mediaserver.te \
     mm-qcamerad.te \
     mpdecision.te \
-    netmgrd.te \
     platform_app.te \
-    qmuxd.te \
-    qseecomd.te \
-    radio.te \
-    rild.te \
+    property.te \
+    property_contexts \
     rmt_storage.te \
-    sensors.te \
-    subsystem_ramdump.te \
-    system_app.te \
     system_server.te \
     thermal-engine.te \
-    ueventd.te \
-    untrusted_app.te \
-    vold.te \
-    vss.te \
-    wpa.te \
-    file_contexts \
-    genfs_contexts \
     wcnss_service.te
-
-#does not exist
-#    gsiff_daemon.te \
-#    location_mq.te \
-#    lowi-server.te \
-#    ppd.te \
-#    qcamerasvr.te \
-#    qrngd.te \
-#    quipc_igsn.te \
-#    quipc_main.te \
-#    xtwifi_client.te \
-#    xtwifi_inet.te \
 
 # Vold
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
