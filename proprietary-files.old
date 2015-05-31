@@ -32,8 +32,8 @@ etc/acdbdata/QRD/QRD_Handset_cal.acdb
 etc/acdbdata/QRD/QRD_Hdmi_cal.acdb
 etc/acdbdata/QRD/QRD_Headset_cal.acdb
 etc/acdbdata/QRD/QRD_Speaker_cal.acdb
-#vendor/lib/libacdbloader.so
-#vendor/lib/libacdbmapper.so
+vendor/lib/libacdbloader.so
+vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
@@ -61,16 +61,12 @@ vendor/lib/libssd.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/libwvdrm_L3.so
 
 # FM radio
 bin/fm_qsoc_patches
 bin/fmconfig
 
 # GPS
-app/com.qualcomm.location.apk
-app/com.qualcomm.location.odex
-app/com.qualcomm.services.location.apk
 bin/garden_app
 bin/location-mq
 bin/xtwifi-client
@@ -87,8 +83,6 @@ etc/quipc.conf
 etc/sap.conf
 etc/xtra_root_cert.pem
 etc/xtwifi.conf
-framework/com.qualcomm.location.vzw_library.jar
-framework/com.qualcomm.location.vzw_library.odex
 lib/libgps.utils.so
 lib/libloc_api_v02.so
 lib/libloc_core.so
@@ -136,8 +130,6 @@ vendor/lib/libthermalclient.so
 vendor/lib/libthermalioctl.so
 
 # Time services
-app/TimeService.apk
-app/TimeService.odex
 bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
