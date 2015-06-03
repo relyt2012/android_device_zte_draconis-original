@@ -77,6 +77,7 @@ persist.data_netmgrd_mtu=1358
 persist.radio.apm_sim_not_pwdn=0
 ro.telephony.call_ring.multiple=false
 ro.use_data_netmgrd=true
+ro.build.baseband_version=P892T57B01
 
 # Time services
 persist.timed.enable=true
