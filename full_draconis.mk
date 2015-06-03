@@ -263,6 +263,12 @@ $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmiservices.so:system/vendor/lib/libqm
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qc-qmi-1.so:system/vendor/lib/libril-qc-qmi-1.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qcril-hook-oem.so:system/vendor/lib/libril-qcril-hook-oem.so
 
+# Sensors
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/sensor/vendor/lib/hw/sensors.msm8226.so:system/vendor/lib/hw/sensors.msm8226.so \
+$(LOCAL_PATH)/prebuilts/sensor/vendor/lib/libsensor1.so:system/vendor/lib/libsensor1.so \
+$(LOCAL_PATH)/prebuilts/sensor/vendor/lib/libsensor_reg.so:system/vendor/lib/libsensor_reg.so
+
 # DT Image
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/dt.img:dt.img \

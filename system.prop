@@ -87,3 +87,6 @@ wifi.interface=wlan0
 
 # Disable Screen button
 qemu.hw.mainkeys=1
+
+persist.demo.hdmirotationlock=false
+ro.hdmi.enable=true
