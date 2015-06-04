@@ -270,6 +270,10 @@ $(LOCAL_PATH)/prebuilts/gps/app/com.qualcomm.services.location.apk:system/app/co
 $(LOCAL_PATH)/prebuilts/gps/framework/com.qualcomm.location.vzw_library.jar:system/framework/com.qualcomm.location.vzw_library.jar \
 $(LOCAL_PATH)/prebuilts/gps/lib/hw/gps.msm8226.so:system/lib/hw/gps.msm8226.so
 
+# Time service
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/time/app/TimeService.apk:system/app/TimeService.apk
+
 # Sensors
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/prebuilts/sensor/vendor/lib/hw/sensors.msm8226.so:system/vendor/lib/hw/sensors.msm8226.so \
