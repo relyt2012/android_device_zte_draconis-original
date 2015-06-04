@@ -54,9 +54,6 @@ bin/fm_qsoc_patches
 bin/fmconfig
 
 # GPS
-app/com.qualcomm.location.apk
-app/com.qualcomm.location.odex
-app/com.qualcomm.services.location.apk
 bin/garden_app
 bin/location-mq
 bin/xtwifi-client
@@ -73,8 +70,6 @@ etc/quipc.conf
 etc/sap.conf
 etc/xtra_root_cert.pem
 etc/xtwifi.conf
-framework/com.qualcomm.location.vzw_library.jar
-framework/com.qualcomm.location.vzw_library.odex
 lib/libgps.utils.so
 lib/libloc_api_v02.so
 lib/libloc_core.so
@@ -97,6 +92,7 @@ vendor/lib/libxt_native.so
 vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
 vendor/lib/libxtwifi_zpp_adaptor.so
+
 
 # Media / OMX
 vendor/lib/libDivxDrm.so

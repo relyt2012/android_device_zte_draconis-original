@@ -263,6 +263,13 @@ $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmiservices.so:system/vendor/lib/libqm
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qc-qmi-1.so:system/vendor/lib/libril-qc-qmi-1.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qcril-hook-oem.so:system/vendor/lib/libril-qcril-hook-oem.so
 
+# GPS
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/gps/app/com.qualcomm.location.apk:system/app/com.qualcomm.location.apk \
+$(LOCAL_PATH)/prebuilts/gps/app/com.qualcomm.services.location.apk:system/app/com.qualcomm.services.location.apk \
+$(LOCAL_PATH)/prebuilts/gps/framework/com.qualcomm.location.vzw_library.jar:system/framework/com.qualcomm.location.vzw_library.jar \
+$(LOCAL_PATH)/prebuilts/gps/lib/hw/gps.msm8226.so:system/lib/hw/gps.msm8226.so
+
 # Sensors
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/prebuilts/sensor/vendor/lib/hw/sensors.msm8226.so:system/vendor/lib/hw/sensors.msm8226.so \
