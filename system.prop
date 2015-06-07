@@ -1,4 +1,5 @@
 # Audio
+
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 use.voice.path.for.pcm.voip=true
@@ -9,10 +10,13 @@ audio.offload.multiple.enabled=false
 audio.offload.pcm.16bit.enable=false
 audio.offload.pcm.24bit.enable=false
 av.streaming.offload.enable=false
+
+
 #ro.qc.sdk.audio.fluencetype=none
 #persist.audio.fluence.speaker=true
 #av.offload.enable=false
 #tunnel.audio.encode=false
+
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.speaker=false
 av.offload.enable=true
@@ -60,9 +64,12 @@ ro.qualcomm.cabl=1
 ro.min_freq=787000
 
 # Telephony
+ro.telephony.ril_class=QualcommSharedRIL
 rild.libpath=/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
+ro.telephony.default_network=10
+ro.ril.def.preffered.network=10
 persist.rild.nitz_long_ons_0=
 persist.rild.nitz_long_ons_1=
 persist.rild.nitz_long_ons_2=
@@ -74,13 +81,20 @@ persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 persist.radio.msgtunnel.start=false
-ro.telephony.default_network=0
 telephony.lteOnCdmaDevice=0
+telephony.lteOnGsmDevice = 1
 persist.data_netmgrd_mtu=1358
 persist.radio.apm_sim_not_pwdn=0
 ro.telephony.call_ring.multiple=false
 ro.use_data_netmgrd=true
 ro.build.baseband_version=P892T57B01
+ro.ril.disable.power.collapse=0
+
+net.rmnet0.dns1=8.8.8.8
+net.rmnet0.dns2=8.8.4.4
+net.dns1=8.8.8.8
+net.dns2=8.8.4.4
+mobiledata.interfaces=wlan0,rmnet0,rmnet1,rmnet2
 
 # Time services
 persist.timed.enable=true
