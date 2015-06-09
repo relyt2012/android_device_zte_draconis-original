@@ -269,3 +269,9 @@ bin/qrngtest
 bin/wcnss_service
 bin/mm-pp-daemon
 etc/enable_swap.sh
+
+#other firmware
+firmware/nfc_test.bin
+firmware/Signedrompatch_v20.bin
+firmware/Signedrompatch_v21.bin
+firmware/Signedrompatch_v24.bin

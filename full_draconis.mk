@@ -230,27 +230,49 @@ $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.
 
 #RIL
 PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/ril/app/ims/ims.apk:system/app/ims/ims.apk \
+$(LOCAL_PATH)/prebuilts/ril/app/QComQMIPermissions/QComQMIPermissions.apk:system/app/QComQMIPermissions/QComQMIPermissions.apk \
 $(LOCAL_PATH)/prebuilts/ril/app/qcrilmsgtunnel/qcrilmsgtunnel.apk:system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
+$(LOCAL_PATH)/prebuilts/ril/bin/dsdnsutil:system/bin/dsdnsutil \
+$(LOCAL_PATH)/prebuilts/ril/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
+$(LOCAL_PATH)/prebuilts/ril/bin/imsdatadaemon:system/bin/imsdatadaemon \
+$(LOCAL_PATH)/prebuilts/ril/bin/imsqmidaemon:system/bin/imsqmidaemon \
+$(LOCAL_PATH)/prebuilts/ril/bin/ims_rtp_daemon:system/bin/ims_rtp_daemon \
 $(LOCAL_PATH)/prebuilts/ril/bin/irsc_util:system/bin/irsc_util \
 $(LOCAL_PATH)/prebuilts/ril/bin/netmgrd:system/bin/netmgrd \
+$(LOCAL_PATH)/prebuilts/ril/bin/qmiproxy:system/bin/qmiproxy \
 $(LOCAL_PATH)/prebuilts/ril/bin/qmuxd:system/bin/qmuxd \
 $(LOCAL_PATH)/prebuilts/ril/bin/radish:system/bin/radish \
 $(LOCAL_PATH)/prebuilts/ril/bin/rfs_access:system/bin/rfs_access \
 $(LOCAL_PATH)/prebuilts/ril/bin/rild:system/bin/rild \
 $(LOCAL_PATH)/prebuilts/ril/bin/rmt_storage:system/bin/rmt_storage \
+$(LOCAL_PATH)/prebuilts/ril/etc/permissions/ims.xml:system/etc/permissions/ims.xml \
 $(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
 $(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
+$(LOCAL_PATH)/prebuilts/ril/etc/sec_config:system/etc/sec_config \
+$(LOCAL_PATH)/prebuilts/ril/framework/imslibrary.jar:system/framework/imslibrary.jar \
 $(LOCAL_PATH)/prebuilts/ril/framework/qcnvitems.jar:system/framework/qcnvitems.jar \
 $(LOCAL_PATH)/prebuilts/ril/framework/qcrilhook.jar:system/framework/qcrilhook.jar \
 $(LOCAL_PATH)/prebuilts/ril/lib/libril.so:system/lib/libril.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libconfigdb.so:system/vendor/lib/libconfigdb.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdiag.so:system/vendor/lib/libdiag.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-dplmedia.so:system/vendor/lib/lib-dplmedia.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsi_netctrl.so:system/vendor/lib/libdsi_netctrl.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsnetutils.so:system/vendor/lib/libdsnetutils.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libdsutils.so:system/vendor/lib/libdsutils.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libidl.so:system/vendor/lib/libidl.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imscamera.so:system/vendor/lib/lib-imscamera.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsdpl.so:system/vendor/lib/lib-imsdpl.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsqimf.so:system/vendor/lib/lib-imsqimf.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsrcs.so:system/vendor/lib/lib-imsrcs.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imss.so:system/vendor/lib/lib-imss.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsSDP.so:system/vendor/lib/lib-imsSDP.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsvt.so:system/vendor/lib/lib-imsvt.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-imsxml.so:system/vendor/lib/lib-imsxml.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libmmrtpdecoder.so:system/vendor/lib/libmmrtpdecoder.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libmmrtpencoder.so:system/vendor/lib/libmmrtpencoder.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libnetmgr.so:system/vendor/lib/libnetmgr.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqcci_legacy.so:system/vendor/lib/libqcci_legacy.so \
-$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqc-opt.so:system/vendor/lib/libqc-opt.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqdi.so:system/vendor/lib/libqdi.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqdp.so:system/vendor/lib/libqdp.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi.so:system/vendor/lib/libqmi.so \
@@ -258,10 +280,18 @@ $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_cci.so:system/vendor/lib/libqmi_cc
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_client_qmux.so:system/vendor/lib/libqmi_client_qmux.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_common_so.so:system/vendor/lib/libqmi_common_so.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_csi.so:system/vendor/lib/libqmi_csi.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_csvt_srvc.so:system/vendor/lib/libqmi_csvt_srvc.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmi_encdec.so:system/vendor/lib/libqmi_encdec.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libqmiservices.so:system/vendor/lib/libqmiservices.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rcsimssjni.so:system/vendor/lib/lib-rcsimssjni.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rcsjni.so:system/vendor/lib/lib-rcsjni.so \
 $(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qc-qmi-1.so:system/vendor/lib/libril-qc-qmi-1.so \
-$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qcril-hook-oem.so:system/vendor/lib/libril-qcril-hook-oem.so
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libril-qcril-hook-oem.so:system/vendor/lib/libril-qcril-hook-oem.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rtpcommon.so:system/vendor/lib/lib-rtpcommon.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rtpcore.so:system/vendor/lib/lib-rtpcore.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rtpdaemoninterface.so:system/vendor/lib/lib-rtpdaemoninterface.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/lib-rtpsl.so:system/vendor/lib/lib-rtpsl.so \
+$(LOCAL_PATH)/prebuilts/ril/vendor/lib/libxml.so:system/vendor/lib/libxml.so
 
 # GPS
 PRODUCT_COPY_FILES += \
