@@ -93,7 +93,6 @@ vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
 vendor/lib/libxtwifi_zpp_adaptor.so
 
-
 # Media / OMX
 vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
@@ -194,9 +193,6 @@ vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc.so
 
 # Sensors
-bin/gsensor_test
-bin/gyrosensor_test
-bin/msensor_test
 bin/sensors.qcom
 etc/permissions/android.hardware.sensor.stepcounter.xml
 etc/permissions/android.hardware.sensor.stepdetector.xml
@@ -221,7 +217,6 @@ etc/hostapd/hostapd.accept
 etc/hostapd/hostapd.deny
 etc/hostapd/hostapd_default.conf
 
-
 #scripts
 etc/init.ath3k.bt.sh
 etc/init.qcom.audio.sh
@@ -245,7 +240,6 @@ bin/sapd
 bin/ftmdaemon
 bin/bridgemgrd
 bin/port-bridge
-bin/qmiproxy
 bin/ptt_socket_app
 bin/gpsone_daemon
 bin/quipc_igsn
@@ -253,7 +247,6 @@ bin/quipc_main
 bin/lowi-server
 bin/drmdiagapp
 bin/ATFWD-daemon
-bin/ds_fmc_appd
 bin/ssr_diag
 bin/hvdcp
 bin/charger_monitor
@@ -269,9 +262,3 @@ bin/qrngtest
 bin/wcnss_service
 bin/mm-pp-daemon
 etc/enable_swap.sh
-
-#other firmware
-firmware/nfc_test.bin
-firmware/Signedrompatch_v20.bin
-firmware/Signedrompatch_v21.bin
-firmware/Signedrompatch_v24.bin

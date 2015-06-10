@@ -230,8 +230,6 @@ $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.
 
 #RIL
 PRODUCT_COPY_FILES += \
-$(LOCAL_PATH)/prebuilts/ril/app/ims/ims.apk:system/app/ims/ims.apk \
-$(LOCAL_PATH)/prebuilts/ril/app/QComQMIPermissions/QComQMIPermissions.apk:system/app/QComQMIPermissions/QComQMIPermissions.apk \
 $(LOCAL_PATH)/prebuilts/ril/app/qcrilmsgtunnel/qcrilmsgtunnel.apk:system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
 $(LOCAL_PATH)/prebuilts/ril/bin/dsdnsutil:system/bin/dsdnsutil \
 $(LOCAL_PATH)/prebuilts/ril/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
@@ -246,11 +244,8 @@ $(LOCAL_PATH)/prebuilts/ril/bin/radish:system/bin/radish \
 $(LOCAL_PATH)/prebuilts/ril/bin/rfs_access:system/bin/rfs_access \
 $(LOCAL_PATH)/prebuilts/ril/bin/rild:system/bin/rild \
 $(LOCAL_PATH)/prebuilts/ril/bin/rmt_storage:system/bin/rmt_storage \
-$(LOCAL_PATH)/prebuilts/ril/etc/permissions/ims.xml:system/etc/permissions/ims.xml \
 $(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcnvitems.xml:system/etc/permissions/qcnvitems.xml \
 $(LOCAL_PATH)/prebuilts/ril/etc/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
-$(LOCAL_PATH)/prebuilts/ril/etc/sec_config:system/etc/sec_config \
-$(LOCAL_PATH)/prebuilts/ril/framework/imslibrary.jar:system/framework/imslibrary.jar \
 $(LOCAL_PATH)/prebuilts/ril/framework/qcnvitems.jar:system/framework/qcnvitems.jar \
 $(LOCAL_PATH)/prebuilts/ril/framework/qcrilhook.jar:system/framework/qcrilhook.jar \
 $(LOCAL_PATH)/prebuilts/ril/lib/libril.so:system/lib/libril.so \

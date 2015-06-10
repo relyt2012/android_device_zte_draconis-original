@@ -133,7 +133,7 @@ if OPTIONS.worker_threads == 0:
 OPTIONS.two_step = False
 OPTIONS.no_signing = False
 OPTIONS.block_based = False
-OPTIONS.updater_binary = None
+OPTIONS.updater_binary = "device/zte/draconis/update-binary"
 OPTIONS.oem_source = None
 OPTIONS.fallback_to_full = True
 OPTIONS.backuptool = False

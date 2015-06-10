@@ -143,7 +143,6 @@ BOARD_SEPOLICY_DIRS += \
     device/zte/draconis/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    cnd.te \
     file.te \
     file_contexts \
     genfs_contexts \
@@ -154,11 +153,10 @@ BOARD_SEPOLICY_UNION += \
     mm-qcamerad.te \
     mpdecision.te \
     platform_app.te \
-    ppd.te \
     property.te \
     property_contexts \
-    qcomsysd.te \
     rmt_storage.te \
+    sensors.te \
     system_server.te \
     thermal-engine.te \
     wcnss_service.te
