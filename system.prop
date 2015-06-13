@@ -1,4 +1,3 @@
-
 # Audio
 ro.qc.sdk.audio.fluencetype=none
 persist.audio.fluence.voicecall=true
@@ -21,9 +20,15 @@ camera2.portability.force_api=1
 # Display
 ro.sf.lcd_density=320
 ro.opengles.version=196608
-debug.composition.type=dyn
 debug.hwc.dynThreshold=1.5
 debug.sf.fb_always_on=1
+debug.sf.hw=1
+debug.egl.hw=1
+debug.composition.type=c2d
+persist.hwc.mdpcomp.enable=true
+debug.mdpcomp.logs=0
+dev.pm.dyn_samplingrate=1
+
 
 # GPS
 ro.qc.sdk.izat.premium_enabled=0
@@ -44,15 +49,9 @@ mm.enable.qcom_parser=37491
 mm.enable.smoothstreaming=true
 vidc.debug.level=1
 
-# Memory
-ro.config.low_ram=true
-config.disable_atlas=true
-ro.config.max_starting_bg=4
-persist.sys.force_highendgfx=true
-
 # Qualcomm
 ro.vendor.extension_library=/system/vendor/lib/libqc-opt.so
-ro.qualcomm.cabl=0
+ro.qualcomm.cabl=1
 ro.min_freq_0=787200
 ro.min_freq=787000
 
@@ -105,3 +104,21 @@ wifi.interface=wlan0
 
 # Disable Screen button
 qemu.hw.mainkeys=1
+
+persist.demo.hdmirotationlock=false
+ro.hdmi.enable=true
+persist.cne.feature=1
+debug.sf.fb_always_on=1
+persist.demo.hdmirotationlock=false
+ro.hdmi.enable=true
+qcom.hw.aac.encoder=true
+persist.fuse_sdcard=true
+ro.qualcomm.cabl=1
+ro.nfc.port=I2C
+persist.debug.wfd.enable=1
+persist.sys.wfd.virtual=0
+persist.camera.tintless=enable
+dmid=3067269873
+persist.sys.fuse.dir=sdcard
+ro.config.sec_storage=3
+drm.service.enabled=true
