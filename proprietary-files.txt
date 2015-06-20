@@ -246,7 +246,6 @@ bin/quipc_igsn
 bin/quipc_main
 bin/lowi-server
 bin/drmdiagapp
-bin/ATFWD-daemon
 bin/ssr_diag
 bin/hvdcp
 bin/charger_monitor

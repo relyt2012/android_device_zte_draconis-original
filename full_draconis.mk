@@ -188,6 +188,12 @@ PRODUCT_PACKAGES += \
     libOmxVdecHevc \
     libOmxVenc
 
+# DRM
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilts/drm/vendor/lib/mediadrm/libdrmclearkeyplugin.so:system/vendor/lib/mediadrm/libdrmclearkeyplugin.so \
+    $(LOCAL_PATH)/prebuilts/drm/vendor/lib/mediadrm/libwvdrmengine.so:system/vendor/lib/mediadrm/libdrmclearkeyplugin.so
+
+
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
 
@@ -228,9 +234,10 @@ $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini:system/e
 $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
 $(LOCAL_PATH)/prebuilts/wifi/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_factory_nv.bin
 
-#RIL
+#RIL /QMI
 PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/prebuilts/ril/app/qcrilmsgtunnel/qcrilmsgtunnel.apk:system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
+$(LOCAL_PATH)/prebuilts/ril/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
 $(LOCAL_PATH)/prebuilts/ril/bin/dsdnsutil:system/bin/dsdnsutil \
 $(LOCAL_PATH)/prebuilts/ril/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
 $(LOCAL_PATH)/prebuilts/ril/bin/imsdatadaemon:system/bin/imsdatadaemon \
@@ -304,6 +311,10 @@ PRODUCT_COPY_FILES += \
 $(LOCAL_PATH)/prebuilts/sensor/vendor/lib/hw/sensors.msm8226.so:system/vendor/lib/hw/sensors.msm8226.so \
 $(LOCAL_PATH)/prebuilts/sensor/vendor/lib/libsensor1.so:system/vendor/lib/libsensor1.so \
 $(LOCAL_PATH)/prebuilts/sensor/vendor/lib/libsensor_reg.so:system/vendor/lib/libsensor_reg.so
+
+# SD perms
+PRODUCT_COPY_FILES += \
+$(LOCAL_PATH)/prebuilts/sdwrite/etc/permissions/platform.xml:system/etc/permissions/platform.xml
 
 # DT Image
 PRODUCT_COPY_FILES += \
