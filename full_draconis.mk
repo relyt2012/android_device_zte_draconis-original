@@ -191,7 +191,7 @@ PRODUCT_PACKAGES += \
 # DRM
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilts/drm/vendor/lib/mediadrm/libdrmclearkeyplugin.so:system/vendor/lib/mediadrm/libdrmclearkeyplugin.so \
-    $(LOCAL_PATH)/prebuilts/drm/vendor/lib/mediadrm/libwvdrmengine.so:system/vendor/lib/mediadrm/libdrmclearkeyplugin.so
+    $(LOCAL_PATH)/prebuilts/drm/vendor/lib/mediadrm/libwvdrmengine.so:system/vendor/lib/mediadrm/libwvdrmengine.so
 
 
 PRODUCT_BOOT_JARS += \

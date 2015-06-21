@@ -121,3 +121,6 @@ dmid=3067269873
 persist.sys.fuse.dir=sdcard
 ro.config.sec_storage=3
 drm.service.enabled=true
+
+fw.max_users=8
+fw.show_multiuserui=1

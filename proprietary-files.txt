@@ -46,7 +46,6 @@ vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libwvdrm_L3.so
 
 # FM radio
