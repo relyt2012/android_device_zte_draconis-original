@@ -1,2 +1,4 @@
-# 4k2k property
-camera.                u:object_r:camera_prop:s0
+#camera.				u:object_r:camera_prop:s0
+persist.storages.planned_swap	u:object_r:draconis_prop:s0
+persist.zram.planned_size	u:object_r:draconis_prop:s0
+persist.cpu.gov.		u:object_r:draconis_prop:s0

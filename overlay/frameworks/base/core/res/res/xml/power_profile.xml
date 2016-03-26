@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device name="Android">
     <item name="none">0</item>
-    <item name="screen.on">86</item>
-    <item name="screen.full">229</item>
-    <item name="bluetooth.active">30</item>
-    <item name="bluetooth.on">3</item>
-    <item name="wifi.on">2</item>
-    <item name="wifi.active">50</item>
-    <item name="wifi.scan">100</item>
-    <item name="gps.on">70</item>
-    <item name="radio.active">250</item>
-    <item name="radio.scanning">10</item>
+    <item name="screen.on">44.04</item>
+    <item name="bluetooth.active">115.45</item>
+    <item name="bluetooth.on">0.23</item>
+    <item name="screen.full">165.83</item>
+    <item name="wifi.on">1.78</item>
+    <item name="wifi.active">109.64</item>
+    <item name="wifi.scan">64.62</item>
+    <item name="dsp.audio">0.1</item>
+    <item name="dsp.video">0.1</item>
+    <item name="radio.active">70.79</item>
+    <item name="radio.scanning">51.76</item>
+    <item name="gps.on">85.79</item>
     <array name="radio.on">
-        <value>10</value>
-        <value>8</value>
-        <value>6</value>
-        <value>4</value>
-        <value>2</value>
+        <value>1.32</value>
+        <value>3.54</value>
     </array>
     <array name="cpu.speeds">
+        <value>96000</value>
+        <value>192000</value>
+        <value>249600</value>
         <value>300000</value>
         <value>384000</value>
         <value>600000</value>
@@ -30,6 +32,9 @@
     <item name="cpu.idle">3</item>
     <item name="cpu.awake">22</item>
     <array name="cpu.active">
+        <value>66</value>
+        <value>68</value>
+        <value>70</value>
         <value>72</value>
         <value>78</value>
         <value>107</value>
@@ -38,5 +43,5 @@
         <value>157</value>
         <value>164</value>
     </array>
-    <item name="battery.capacity">2070</item>
+    <item name="battery.capacity">2400</item>
 </device>

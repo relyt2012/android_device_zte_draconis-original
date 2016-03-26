@@ -13,7 +13,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+-include vendor/zte/draconis/BoardConfigVendor.mk
+
 LOCAL_PATH := device/zte/draconis
+
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+    WITH_DEXPREOPT_BOOT_IMG_ONLY := false
+  endif
+endif
+WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+
+PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
+
+#Disable memcpy_base.S optimization
+TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
+
+# QCRIL
+#TARGET_RIL_VARIANT := caf
+#SIM_COUNT := 2
+#TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
+#TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
+
+COMMON_GLOBAL_CFLAGS += -DQCOM_MEDIA_DISABLE_BUFFER_SIZE_CHECK
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := draconis
+
+USE_CLANG_PLATFORM_BUILD := true
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_draconis.cpp
+TARGET_UNIFIED_DEVICE := true
+
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
 
 BOARD_VENDOR := zte-qcom
 
@@ -23,26 +60,66 @@ TARGET_SPECIFIC_HEADER_PATH := device/zte/draconis/include
 TARGET_BOARD_PLATFORM := msm8226
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno305
 
+# Memory
+MALLOC_IMPL := dlmalloc
+
 # Architecture
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
 TARGET_CPU_VARIANT := krait
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
+
+#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+# Enables Adreno RS driver
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+
+# Shader cache config options
+# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 androidboot.selinux=permissive
-BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=22 msm_rtb.filter=0x37 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x0000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --dt device/zte/draconis/dt.img --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x2000000 --tags_offset 0x1e00000
 TARGET_KERNEL_SOURCE := kernel/zte/draconis
 TARGET_KERNEL_CONFIG := draconis_defconfig
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# Ant
+# or qualcomm-uart ?
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-smd"
+
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_ENABLED_FM := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
+
+# FM
+TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
@@ -50,145 +127,46 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
-# GPS definitions for Qualcomm solution
-#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
-#TARGET_NO_RPC := true
-
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
-
-# Charger
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/mmi_lpm/lpm_mode
+TARGET_PROVIDES_CAMERA_HAL := true
 
 # CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+ifneq ($(CM_VERSION),)
+    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+endif
+ifneq ($(BLISS_VERSION),)
+    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+endif
+ifneq ($(MK_VERSION),)
+    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/mkhw/
+endif
 
 # Display
-BOARD_EGL_CFG := $(LOCAL_PATH)/prebuilts/adreno/lib/egl/egl.cfg
+BOARD_EGL_CFG := $(LOCAL_PATH)/etc/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
-TARGET_DISPLAY_INSECURE_MM_HEAP := true
-TARGET_DISPLAY_USE_RETIRE_FENCE := true
-TARGET_QCOM_DISPLAY_VARIANT := caf
-USE_SET_METADATA := false
-HAVE_ADRENO_SOURCE:= false
-OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
-# Audio
-BOARD_USES_ALSA_AUDIO := true
-#AUDIO_FEATURE_ENABLED_FM := true
-AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-#BOARD_USES_LEGACY_ALSA_AUDIO := false
-#AUDIO_FEATURE_DISABLED_DTS_EAGLE := false
-#AUDIO_FEATURE_ENABLED_ACDB_LICENSE
-#AUDIO_FEATURE_ENABLED_ANC_HEADSET
-#AUDIO_FEATURE_ENABLED_AUXPCM_BT
-#AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := false
-#AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
-#AUDIO_FEATURE_ENABLED_CUSTOMSTEREO
-#AUDIO_FEATURE_ENABLED_DEV_ARBI := false
-#AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := false
-#AUDIO_FEATURE_ENABLED_DTS_EAGLE := false
-#AUDIO_FEATURE_ENABLED_EXTN_FLAC_DECODER := false
-#AUDIO_FEATURE_ENABLED_EXTN_FORMATS
-#AUDIO_FEATURE_ENABLED_FLUENCE := true
-#AUDIO_FEATURE_ENABLED_HDMI_PASSTHROUGH
-#AUDIO_FEATURE_ENABLED_HFP := true
-#AUDIO_FEATURE_ENABLED_HW_ACCELERATED_EFFECTS
-#AUDIO_FEATURE_ENABLED_INCALL_MUSIC
-#AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := false
-#####AUDIO_FEATURE_ENABLED_LISTEN := true
-#AUDIO_FEATURE_ENABLED_MULTIPLE_TUNNEL
-#AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24
-#AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-#AUDIO_FEATURE_ENABLED_RECORD_PLAY_CONCURRENCY
-#AUDIO_FEATURE_ENABLED_SPKR_PROTECTION := false
-#####AUDIO_FEATURE_ENABLED_SSR := true
-#AUDIO_FEATURE_ENABLED_USBAUDIO := true
-#AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY
-#AUDIO_FEATURE_ENABLED_WFD_CONCURRENCY
-#BOARD_SUPPORTS_SOUND_TRIGGER := false
-#DOLBY_DAP := true
-#DOLBY_DDP := true
-#DOLBY_UDC
-#MULTIPLE_HW_VARIANTS_ENABLED := true
-
-#Media
-COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
-TARGET_QCOM_MEDIA_VARIANT := caf
-
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
+# Encryption
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Memory
-MALLOC_IMPL := dlmalloc
+# Gps
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
+TARGET_PROVIDES_GPS_LOC_API := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
+TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(LOCAL_PATH)/power/power_ext.c
 
-# Qualcomm support
-BOARD_USES_QCOM_HARDWARE := true
+# Charger
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 
-# SELinux
--include device/qcom/sepolicy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += \
-    device/zte/draconis/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file.te \
-    file_contexts \
-    genfs_contexts \
-    init_shell.te \
-    kernel.te \
-    location.te \
-    mediaserver.te \
-    mm-qcamerad.te \
-    mpdecision.te \
-    platform_app.te \
-    property.te \
-    property_contexts \
-    rmt_storage.te \
-    sensors.te \
-    system_server.te \
-    thermal-engine.te \
-    wcnss_service.te
-
-# Vold
-BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
-BOARD_VOLD_MAX_PARTITIONS := 40
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
-
-# Wifi
-BOARD_HAS_QCOM_WLAN              := true
-BOARD_HAS_QCOM_WLAN_SDK          := true
-BOARD_WLAN_DEVICE                := qcwcn
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-TARGET_USES_WCNSS_CTRL           := true
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-WIFI_DRIVER_FW_PATH_STA          := "sta"
-WIFI_DRIVER_FW_PATH_AP           := "ap"
-WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME          := "wlan"
-
-WLAN_MODULES:
-	mkdir -p $(KERNEL_MODULES_OUT)/pronto
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-
-TARGET_KERNEL_MODULES += WLAN_MODULES
-
+# Partitions
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -196,15 +174,64 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1610612736
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5930598400
 
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QC_TIME_SERVICES := true
+USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY:= true
+
 # Recovery
-TARGET_RECOVERY_FSTAB := device/zte/draconis/recovery.fstab
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+BOARD_SUPPRESS_EMMC_WIPE := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
-# Create Odex Files
-#WITH_DEXPREOPT := true
+# SELinux
+-include device/qcom/sepolicy/sepolicy.mk
 
-# Releasetools
-TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/zte/draconis/releasetools/ota_from_target_files
+BOARD_SEPOLICY_DIRS += \
+    device/zte/draconis/sepolicy
+
+# Vold
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+BOARD_VOLD_MAX_PARTITIONS := 40
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+# Wifi
+TARGET_USES_WCNSS_CTRL := true
+BOARD_HAS_QCOM_WLAN := true
+BOARD_WLAN_DEVICE := qcwcn
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_AP := "ap"
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_PROVIDES_WCNSS_QMI := true
+BOARD_HAS_QCOM_WLAN_SDK := true
+
+# inherit from the proprietary version
+-include vendor/zte/draconis/BoardConfigVendor.mk
+
+ifneq ($(BLISS_VERSION),)
+    # BlissPop Config Flags
+    BLISS_WIPE_CACHES := 0
+    TARGET_TC_ROM := 4.8-sm
+    TARGET_TC_KERNEL := 4.8-sm
+    BLISSIFY := true
+    BLISS_O3 := true
+    BLISS_STRICT := false
+    BLISS_GRAPHITE := true
+    BLISS_KRAIT := true
+    BLISS_PIPE := true
+    TARGET_GCC_VERSION_EXP := $(TARGET_TC_ROM)
+    TARGET_KERNEL_CUSTOM_TOOLCHAIN := $(TARGET_TC_KERNEL)
+
+    #SaberMod
+    -include vendor/bliss/config/sm.mk
+endif
+
+BLOCK_BASED_OTA=false
