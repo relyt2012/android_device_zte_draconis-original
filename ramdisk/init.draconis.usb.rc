@@ -42,26 +42,26 @@ service qcom-usb-sh /system/bin/sh /init.qcom.usb.sh
     user root
     oneshot
 
-service nubia_set /system/bin/sh /init.nubia.sh nubia
+service draconis_set /system/bin/sh /init.draconis.sh draconis
     class core
     user root
     disabled
     oneshot
 
-service nubia_adb_set /system/bin/sh /init.nubia.sh nubia_adb
+service draconis_adb_set /system/bin/sh /init.draconis.sh draconis_adb
     class core
     user root
     disabled
     oneshot
 
 # USB compositions
-on property:sys.usb.config=nubia,adb
-    start nubia_adb_set
+on property:sys.usb.config=draconis,adb
+    start draconis_adb_set
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
-on property:sys.usb.config=nubia
-    start nubia_set
+on property:sys.usb.config=draconis
+    start draconis_set
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=ptp,adb

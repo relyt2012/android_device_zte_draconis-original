@@ -104,10 +104,10 @@ echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
 usb_config=`getprop persist.sys.usb.config`
 case "$usb_config" in
     "" | "adb") #USB persist config not set, select default configuration
-        setprop persist.sys.usb.config nubia,adb
+        setprop persist.sys.usb.config draconis,adb
     ;;
     "none") #default configuration for product release
-        setprop persist.sys.usb.config nubia
+        setprop persist.sys.usb.config draconis
 	;;
     * ) ;; #USB persist config exists, do nothing
 esac

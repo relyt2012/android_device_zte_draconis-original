@@ -25,7 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.nubia.usb.rc
+import init.draconis.usb.rc
 import init.target.rc
 
 on early-init
