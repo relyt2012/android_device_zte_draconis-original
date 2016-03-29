@@ -1,7 +1,10 @@
-type_transition mpdecision socket_device:sock_file mpctl_socket;
-type_transition mpdecision system_data_file:file mpctl_data_file;
-allow mpdecision socket_device:dir { write add_name };
-allow mpdecision system_data_file:dir { write add_name };
-
 allow mpdecision mediaserver:dir search;
 allow mpdecision mediaserver:file { read open };
+allow mpdecision socket_device:dir { write add_name remove_name };
+allow mpdecision socket_device:sock_file { write create setattr };
+allow mpdecision system_data_file:dir { write add_name };
+allow mpdecision system_data_file:file { open };
+allow mpdecision thermal_socket:sock_file write;
+allow mpdecision thermal-engine:unix_stream_socket connectto;
+type_transition mpdecision socket_device:sock_file mpctl_socket;
+type_transition mpdecision system_data_file:file mpctl_data_file;

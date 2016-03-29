@@ -1,7 +1,30 @@
+# Battery health
+type batt_health_data_file, file_type, data_file_type;
+type sysfs_batt_health, fs_type, sysfs_type;
 
-## disable livedisplay_sysfs, as it is defined in vendor/cm/sepolicy/property.te
-#type livedisplay_sysfs, sysfs_type, file_type;
-type vibeamp_sysfs, sysfs_type, file_type;
+# CMHW
+type vibeamp_sysfs, fs_type, sysfs_type;
+
+# Cutback socket (RILD)
+type cutback_data_file, file_type, data_file_type;
+
+# Hardware revisions
+type hw_revs_data_file, file_type, data_file_type;
+
+# PDS
+type pds_file, file_type;
+type pds_public_file, file_type;
+type pds_batt_file, file_type;
+
+# Sensors
+type sysfs_devices_sensors, sysfs_type;
+
+# Power
+type sysfs_power, sysfs_type;
+
+# Light
+type sysfs_light, sysfs_type;
+
 type touchtune_sysfs, sysfs_type, file_type;
 type ztehw_sysfs, sysfs_type, file_type;
 type proxcal_sysfs, sysfs_type, file_type;
@@ -9,3 +32,7 @@ type persist_proxcal_file, file_type;
 type fastcharge_sysfs, sysfs_type, file_type;
 type boost_sysfs, sysfs_type, file_type;
 type usbkeyboard_device, file_type;
+type kcal_dev, file_type;
+type vibe_dev, file_type;
+type touchpanel_sysfs, sysfs_type, file_type;
+type hwaddrs_data_file, file_type, data_file_type;

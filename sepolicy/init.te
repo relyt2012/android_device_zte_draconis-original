@@ -1,0 +1,22 @@
+# Unsure what init is doing here
+allow init app_data_file:dir setattr;
+allow init cid_block_device:blk_file setattr;
+allow init clogo_block_device:blk_file setattr;
+allow init hob_block_device:blk_file setattr;
+allow init logs_block_device:blk_file setattr;
+allow init utags_block_device:blk_file setattr;
+
+# Allow init to mount PDS
+allow init loop_device:blk_file write;
+
+allow init sysfs_light:file setattr;
+allow init sysfs_power:file setattr;
+
+# Allow init to read battery sysfs
+allow init sysfs_battery_supply:lnk_file read;
+allow init fuse:dir { mounton search };
+allow init self:capability sys_module;
+allow init self:process execmem;
+allow init labeledfs:filesystem remount;
+allow init lge_touch_sysfs:file { relabelto setattr };
+allow init socket_device:sock_file { create setattr };

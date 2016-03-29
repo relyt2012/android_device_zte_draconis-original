@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+# inherit from the proprietary version
 -include vendor/zte/draconis/BoardConfigVendor.mk
 
 LOCAL_PATH := device/zte/draconis
@@ -30,11 +32,7 @@ PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:sys
 #Disable memcpy_base.S optimization
 TARGET_CPU_MEMCPY_BASE_OPT_DISABLE := true
 
-# QCRIL
-#TARGET_RIL_VARIANT := caf
-#SIM_COUNT := 2
-#TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
-#TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
+TARGET_PROVIDES_LIBRIL := true
 
 COMMON_GLOBAL_CFLAGS += -DQCOM_MEDIA_DISABLE_BUFFER_SIZE_CHECK
 
@@ -47,7 +45,6 @@ USE_CLANG_PLATFORM_BUILD := true
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_draconis.cpp
 TARGET_UNIFIED_DEVICE := true
-
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/recovery.fstab
@@ -74,26 +71,10 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=softfp
 
-#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8226
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
-
-# Enables Adreno RS driver
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-
-# Shader cache config options
-# Maximum size of the  GLES Shaders that can be cached for reuse.
-# Increase the size if shaders of size greater than 12KB are used.
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-
-# Maximum GLES shader cache size for each app to store the compiled shader
-# binaries. Decrease the size if RAM or Flash Storage size is a limitation
-# of the device.
-MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=22 msm_rtb.filter=0x37 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
@@ -132,15 +113,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_PROVIDES_CAMERA_HAL := true
 
 # CMHW
-ifneq ($(CM_VERSION),)
-    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
-endif
-ifneq ($(BLISS_VERSION),)
-    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
-endif
-ifneq ($(MK_VERSION),)
-    BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/mkhw/
-endif
+BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
 
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/etc/egl.cfg
@@ -148,6 +121,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 USE_OPENGL_RENDERER := true
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
@@ -166,7 +142,6 @@ TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(LOCAL_PATH)/power/power_ext.c
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
-# Partitions
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -212,26 +187,5 @@ WIFI_DRIVER_FW_PATH_AP := "ap"
 TARGET_USES_QCOM_WCNSS_QMI := true
 TARGET_PROVIDES_WCNSS_QMI := true
 BOARD_HAS_QCOM_WLAN_SDK := true
-
-# inherit from the proprietary version
--include vendor/zte/draconis/BoardConfigVendor.mk
-
-ifneq ($(BLISS_VERSION),)
-    # BlissPop Config Flags
-    BLISS_WIPE_CACHES := 0
-    TARGET_TC_ROM := 4.8-sm
-    TARGET_TC_KERNEL := 4.8-sm
-    BLISSIFY := true
-    BLISS_O3 := true
-    BLISS_STRICT := false
-    BLISS_GRAPHITE := true
-    BLISS_KRAIT := true
-    BLISS_PIPE := true
-    TARGET_GCC_VERSION_EXP := $(TARGET_TC_ROM)
-    TARGET_KERNEL_CUSTOM_TOOLCHAIN := $(TARGET_TC_KERNEL)
-
-    #SaberMod
-    -include vendor/bliss/config/sm.mk
-endif
 
 BLOCK_BASED_OTA=false
