@@ -247,11 +247,10 @@ case "$target" in
       echo "*** WI-FI chip ID is not specified in /persist/wlan_chip_id **"
       echo "*** Use the default WCN driver.                             **"
       setprop wlan.driver.ath 0
-      rm  /system/lib/modules/wlan.ko
-      ln -s /system/lib/modules/pronto/pronto_wlan.ko \
-		/system/lib/modules/wlan.ko
+      # rm  /system/lib/modules/wlan.ko
+      # ln -s /system/lib/modules/pronto/pronto_wlan.ko /system/lib/modules/wlan.ko
       # Populate the writable driver configuration file
-      if [ ! -s /data/misc/wifi/WCNSS_qcom_cfg.ini ]; then
+      if [ ! -e /data/misc/wifi/WCNSS_qcom_cfg.ini ]; then
           cp /system/etc/wifi/WCNSS_qcom_cfg.ini \
 		/data/misc/wifi/WCNSS_qcom_cfg.ini
           chown -h system:wifi /data/misc/wifi/WCNSS_qcom_cfg.ini
@@ -264,9 +263,8 @@ case "$target" in
 
       # Use different wpa_supplicant.conf template between wcn driver
       # and ath6kl driver
-      rm /system/etc/wifi/wpa_supplicant.conf
-      ln -s /system/etc/wifi/wpa_supplicant_wcn.conf \
-                /system/etc/wifi/wpa_supplicant.conf
+      # rm /system/etc/wifi/wpa_supplicant.conf
+      # ln -s /system/etc/wifi/wpa_supplicant_wcn.conf /system/etc/wifi/wpa_supplicant.conf
 
       # Trigger WCNSS platform driver
       trigger_wcnss &
