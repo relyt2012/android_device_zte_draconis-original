@@ -1,7 +1,6 @@
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0 \
-    persist.sys.usb.config=mtp,adb \
     ro.debuggable=1
 
 # Inherit from those products. Most specific first.
