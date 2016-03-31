@@ -254,7 +254,7 @@
 /mnt/asec/[^/]+/lib(/.*)?   u:object_r:asec_public_file:s0
 /data/app-asec(/.*)?        u:object_r:asec_image_file:s0
 #line 1 "device/qcom/sepolicy/common/file_contexts"
-##################################
+###################################
 # Dev nodes
 #
 /dev/adsprpc-smd                                u:object_r:qdsp_device:s0
@@ -264,6 +264,7 @@
 /dev/kgsl-3d0                                   u:object_r:gpu_device:s0
 /dev/mhi_pipe_.*                                u:object_r:mhi_device:s0
 /dev/msm_.*                                     u:object_r:audio_device:s0
+/dev/usf1                                       u:object_r:usf_device:s0
 /dev/msm_dsps                                   u:object_r:sensors_device:s0
 /dev/msm_thermal_query                          u:object_r:thermal_device:s0
 /dev/nfc-nci                                    u:object_r:nfc_device:s0
@@ -272,7 +273,6 @@
 /dev/rtc0                                       u:object_r:rtc_device:s0
 /dev/sensors                                    u:object_r:sensors_device:s0
 /dev/smd.*                                      u:object_r:smd_device:s0
-/dev/smd11                                      u:object_r:smd11_device:s0
 /dev/smem_log                                   u:object_r:smem_log_device:s0
 /dev/ttyHSL0                                    u:object_r:console_device:s0
 /dev/ttyHS[0-9]*                                u:object_r:serial_device:s0
@@ -310,8 +310,6 @@
 /dev/dpl_ctrl                                   u:object_r:rmnet_device:s0
 /dev/wcnss_ctrl                                 u:object_r:wcnss_device:s0
 /dev/wcnss_wlan                                 u:object_r:wcnss_device:s0
-/dev/pta                                        u:object_r:pta_device:s0
-/dev/mdss_rotator                               u:object_r:graphics_device:s0
 /dev/hbtp_input                                 u:object_r:hbtp_device:s0
 /dev/jdi-bu21150                                u:object_r:bu21150_device:s0
 /dev/voice_svc                                  u:object_r:voice_device:s0
@@ -320,7 +318,6 @@
 /dev/coresight-tmc-etr                          u:object_r:qdss_device:s0
 /dev/coresight-tmc-etr-stream                   u:object_r:qdss_device:s0
 /dev/system_health_monitor                      u:object_r:system_health_monitor_device:s0
-/dev/block/bootdevice/by-name/frp               u:object_r:frp_block_device:s0
 
 ###################################
 # Dev socket nodes
@@ -329,6 +326,7 @@
 /dev/socket/qmux_bluetooth(/.*)?                u:object_r:qmuxd_socket:s0
 /dev/socket/qmux_gps(/.*)?                      u:object_r:qmuxd_socket:s0
 /dev/socket/qmux_radio(/.*)?                    u:object_r:qmuxd_socket:s0
+/dev/socket/qmux_nfc(/.*)?                      u:object_r:qmuxd_socket:s0
 /dev/socket/sensor_ctl_socket                   u:object_r:sensors_socket:s0
 /dev/socket/cnd                                 u:object_r:cnd_socket:s0
 /dev/socket/nims                                u:object_r:cnd_socket:s0
@@ -348,7 +346,6 @@
 /dev/socket/rild2-debug                         u:object_r:rild_debug_socket:s0
 /dev/socket/rild3                               u:object_r:rild_socket:s0
 /dev/socket/rild3-debug                         u:object_r:rild_debug_socket:s0
-/dev/socket/msm_irqbalance                      u:object_r:msm_irqbalance_socket:s0
 
 ###################################
 # System files
@@ -361,7 +358,7 @@
 /system/bin/diag_callback_client                u:object_r:diag_exec:s0
 /system/bin/diag_dci_sample                     u:object_r:diag_exec:s0
 /system/bin/diag_klog                           u:object_r:diag_exec:s0
-/system/bin/diag_mdlog                          u:object_r:diag_exec:s0
+/system/bin/diag_mdlog                          u:object_r:qlogd_exec:s0
 /system/bin/diag_qshrink4_daemon                u:object_r:diag_exec:s0
 /system/bin/diag_socket_log                     u:object_r:diag_exec:s0
 /system/bin/diag_uart_log                       u:object_r:diag_exec:s0
@@ -400,7 +397,6 @@
 /system/bin/mdm_helper_proxy                    u:object_r:mdm_helper_exec:s0
 /system/bin/ks                                  u:object_r:mdm_helper_exec:s0
 /system/bin/pm-service                          u:object_r:per_mgr_exec:s0
-/system/bin/pm-proxy                            u:object_r:per_mgr_exec:s0
 /system/bin/usb_uicc_client                     u:object_r:usb_uicc_daemon_exec:s0
 /system/bin/qcom-system-daemon                  u:object_r:qcomsysd_exec:s0
 /system/xbin/qlogd                              u:object_r:qlogd_exec:s0
@@ -422,30 +418,40 @@
 /system/bin/garden_app                          u:object_r:location_exec:s0
 /system/bin/gpsone_daemon                       u:object_r:location_exec:s0
 /system/vendor/bin/slim_ap_daemon               u:object_r:location_exec:s0
-/system/bin/energy-awareness                    u:object_r:energyawareness_exec:s0
-/system/bin/dts_configurator                    u:object_r:dtsconfigurator_exec:s0
 /system/vendor/bin/qti                          u:object_r:qti_exec:s0
 /system/bin/wcnss_service                       u:object_r:wcnss_service_exec:s0
 /system/vendor/bin/hbtp_daemon                  u:object_r:hbtp_exec:s0
-/system/bin/wcnss_filter                        u:object_r:wcnss_filter_exec:s0
+/system/bin/sapd                                u:object_r:sapd_exec:s0
+/system/bin/btsnoop                             u:object_r:btsnoop_exec:s0
+/system/bin/dun-server                          u:object_r:dun-server_exec:s0
+/system/bin/wfdservice                          u:object_r:wfdservice_exec:s0
+/system/bin/usf_epos                            u:object_r:usf_exec:s0
+/system/bin/usf_gesture                         u:object_r:usf_exec:s0
+/system/bin/usf_hovering                        u:object_r:usf_exec:s0
+/system/bin/usf_p2p                             u:object_r:usf_exec:s0
+/system/bin/usf_proximity                       u:object_r:usf_exec:s0
+/system/bin/usf_sync_gesture                    u:object_r:usf_exec:s0
+/system/bin/usf_sw_calib                        u:object_r:usf_exec:s0
+/system/bin/usf_pairing                         u:object_r:usf_exec:s0
+/system/bin/usf_tester                          u:object_r:usf_exec:s0
 
 ###################################
 # sysfs files
 #
 /sys/class/graphics/fb0/mdp/caps                                    u:object_r:sysfs_graphics:s0
 /sys/class/thermal(/.*)?                                            u:object_r:sysfs_thermal:s0
-/sys/devices/soc.0/qcom,bcl.*(/.*)?                                 u:object_r:sysfs_thermal:s0
-/sys/devices/qcom,bcl.*(/.*)?                                       u:object_r:sysfs_thermal:s0
+/sys/devices/.*bcl.*(/.*)?                                          u:object_r:sysfs_thermal:s0
 /sys/devices/f9200000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_dwc3/power_supply/usb(/.*)?                        u:object_r:sysfs_usb_supply:s0
 /sys/devices/msm_otg/power_supply/usb(/.*)?                         u:object_r:sysfs_usb_supply:s0
 /sys/devices/platform/battery_current_limit                         u:object_r:sysfs_thermal:s0
-/sys/devices/qpnp-charger.*/power_supply/battery(/.*)?              u:object_r:sysfs_battery_supply:s0
+# Remove qpnp-charger in seinux,use the defualt setting for this interface @zhengchao
+#/sys/devices/qpnp-charger.*/power_supply/battery(/.*)?              u:object_r:sysfs_battery_supply:s0
 /sys/devices/system/cpu/cpu0/rq-stats/*                             u:object_r:sysfs_rqstats:s0
 /sys/devices/virtual/graphics/fb([0-2])+/idle_time                  u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb([0-2])+/dynamic_fps                u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb([0-2])+/product_description        u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/graphics/fb([0-2])+/vendor_name                u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb([0-2])+/hdcp/tp                    u:object_r:sysfs_graphics:s0
 /sys/devices/virtual/hsicctl/hsicctl1[0-9]/modem_wait               u:object_r:sysfs_hsic_modem_wait:s0
 /sys/devices/virtual/hsicctl/hsicctl[0-9]/modem_wait                u:object_r:sysfs_hsic_modem_wait:s0
 /sys/devices/virtual/smdpkt/smdcntl1[0-9]/open_timeout              u:object_r:sysfs_smd_open_timeout:s0
@@ -456,8 +462,6 @@
 /sys/module/msm_thermal/core_control/cpus_offlined                  u:object_r:sysfs_mpdecision:s0
 /sys/devices/f9a55000.*/power_supply/usb(/.*)?                      u:object_r:sysfs_usb_supply:s0
 /sys/devices/virtual/graphics/fb([0-2])+/hpd                        u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb([0-2])+/res_info                   u:object_r:sysfs_graphics:s0
-/sys/devices/virtual/graphics/fb([0-2])+/s3d_mode                   u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/mdp/caps                             u:object_r:sysfs_graphics:s0
 /sys/class/graphics/fb([0-2])+/ad                                   u:object_r:sysfs_graphics:s0
 /sys/bus/platform/drivers/xhci_msm_hsic(/.*)?                       u:object_r:sysfs_hsic:s0
@@ -479,7 +483,7 @@
 /data/data_test(/.*)?                                               u:object_r:data_test_data_file:s0
 /data/diag_log(/.*)?                                                u:object_r:diag_data_file:s0
 /data/misc/sensors(/.*)?                                            u:object_r:sensors_data_file:s0
-/data/rfs.*                                                         u:object_r:rfs_data_file:s0
+/data/rfs.*                                                         u:object_r:rfs_file:s0
 /data/hlos_rfs(/.*)?                                                u:object_r:rfs_shared_hlos_file:s0
 /data/camera(/.*)?                                                  u:object_r:camera_socket:s0
 /data/system/sensors(/.*)?                                          u:object_r:sensors_data_file:s0
@@ -492,21 +496,24 @@
 /data/dpm(/.*)?                                                     u:object_r:dpmd_data_file:s0
 /data/misc/qsee(/.*)?                                               u:object_r:data_qsee_file:s0
 /data/misc/location(/.*)?                                           u:object_r:location_data_file:s0
+/data/misc/location/mq/location-mq-s                                u:object_r:location_socket:s0
 /data/FTM_AP(/.*)?                                                  u:object_r:mmi_data_file:s0
 /data/misc/hbtp(/.*)?                                               u:object_r:hbtp_log_file:s0
-/data/local/.Drm(/.*)?                                              u:object_r:oma_drm_data_file:s0
 /data/misc/qlogd(/.*)?                                              u:object_r:qlogd_data_file:s0
-/data/misc/dts(/.*)?                                                u:object_r:dts_data_file:s0
+/data/usf(/.*)?                                                     u:object_r:usf_data_file:s0
 
 ###################################
 # persist files
 #
 /persist(/.*)?                                                      u:object_r:persist_file:s0
+/persist/drm(/.*)?                                                  u:object_r:persist_drm_file:s0
+/persist/rfs.*                                                      u:object_r:rfs_file:s0
+/persist/hlos_rfs(/.*)?                                             u:object_r:rfs_shared_hlos_file:s0
 /persist/sensors(/.*)?                                              u:object_r:sensors_persist_file:s0
 /persist/data(/.*)?                                                 u:object_r:persist_drm_file:s0
 /persist/data/tz(/.*)?                                              u:object_r:persist_drm_file:s0
 /persist/data/sfs(/.*)?                                             u:object_r:persist_drm_file:s0
-/persist/display(/.*)?                                              u:object_r:persist_display_file:s0
+/persist/usf(/.*)?                                                  u:object_r:persist_usf_file:s0
 
 ###################################
 # oem files
@@ -580,96 +587,29 @@
 
 #Context for mediaserver
 /data/display-tests/media(/.*)?                 u:object_r:display_test_media_file:s0
-#line 1 "device/zte/draconis/sepolicy/file_contexts"
-/sys/devices/virtual/timed_output/vibrator/vtg_level	u:object_r:vibeamp_sysfs:s0
+#line 1 "vendor/zte/sepolicy/file_contexts"
 
-/sys/devices/f9927000.i2c/i2c-5/5-005d/wakeup_gesture	u:object_r:touchtune_sysfs:s0
-/sys/devices/f9927000.i2c/i2c-5/5-005d/touch_key_array	u:object_r:touchtune_sysfs:s0
-/sys/devices/f9927000.i2c/i2c-5/5-005d/keys_enabled	u:object_r:touchtune_sysfs:s0
-/sys/devices/f9927000.i2c/i2c-5/5-005d/palm2sleep       u:object_r:touchtune_sysfs:s0
+###zte add for file_context
+/system/bin/copypartnerapp    u:object_r:shell_exec:s0
+/system/bin/app6939           u:object_r:app6939_exec:s0
+/system/bin/ztediag           u:object_r:ztegeneral_exec:s0
+/system/bin/ftmdaemon-oem     u:object_r:ztegeneral_exec:s0
+/system/bin/getlogtofile      u:object_r:ztegeneral_exec:s0
+/system/bin/modemservice      u:object_r:ztegeneral_exec:s0
+/system/bin/logcontrol        u:object_r:ztegeneral_exec:s0
+/system/bin/screencap1	      u:object_r:surfaceflinger_exec:s0
 
-/sys/devices/qpnp-ztemt_hw_version/ztemt_hw_version	u:object_r:ztehw_sysfs:s0
+/sys/devices/system/led-flash(/.*)?    u:object_r:sysfs_devices_system_led-flash:s0
 
-/persist/.genmac					u:object_r:wifi_data_file:s0
-/persist/.bt_nv.bin					u:object_r:bluetooth_data_file:s0
+/dev/block/bootdevice/by-name/ztecfg            u:object_r:oem_blk_device:s0
 
-/data/cam_socket.*					u:object_r:camera_socket:s0
+#add for factory reset protection
+/dev/block/bootdevice/by-name/oem         u:object_r:oem_blk_device:s0
+/dev/block/bootdevice/by-name/ztelk         u:object_r:oem_blk_device:s0
 
-/dev/block/platform/msm_sdcc.1/by-name/tz 		u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/msm_sdcc.1/by-name/pad		u:object_r:modem_efs_partition_device:s0
+#add for carrier partition
+/carrier(/.*)?              u:object_r:carrier_file:s0
 
-/dev/socket/mpctl					u:object_r:mpctl_socket:s0
-/data/system/default_values				u:object_r:mpctl_data_file:s0
+#add for i2c devices
+/dev/i2c-.*		u:object_r:audio_device:s0
 
-/sys/devices/virtual/proximity/proximity/prox_calibrate_start		u:object_r:proxcal_sysfs:s0
-/sys/devices/virtual/proximity/proximity/prox_offset_cal_start		u:object_r:proxcal_sysfs:s0
-
-/persist/proxdata/threshold				u:object_r:persist_proxcal_file:s0
-
-/sys/kernel/fast_charge/force_fast_charge		u:object_r:fastcharge_sysfs:s0
-/sys/kernel/fast_charge/fast_charge_level		u:object_r:fastcharge_sysfs:s0
-/sys/kernel/fast_charge/available_charge_levels		u:object_r:fastcharge_sysfs:s0
-
-/sys/devices/platform/kcal_ctrl.0/kcal			u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_min		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_enable		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_invert		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_sat		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_hue		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_val		u:object_r:livedisplay_sysfs:s0
-/sys/devices/platform/kcal_ctrl.0/kcal_cont		u:object_r:livedisplay_sysfs:s0
-
-/sys/module/cpu_boost/parameters/cpu_boost		u:object_r:boost_sysfs:s0
-/sys/module/intelli_plug/parameters/touch_boost_active	u:object_r:boost_sysfs:s0
-
-/dev/hidg0						u:object_r:usbkeyboard_device:s0
-/dev/hidg1						u:object_r:usbkeyboard_device:s0
-#line 1 "vendor/cm/sepolicy/file_contexts"
-/cache/dalvik-cache(/.*)? u:object_r:dalvikcache_data_file:s0
-
-/cache/recovery(/.*)?     u:object_r:recovery_cache_file:s0
-
-# Auditd is a logging daemon. Put it into logd's context
-/system/bin/auditd        u:object_r:logd_exec:s0
-/data/misc/audit(/.*)?    u:object_r:auditd_log:s0
-
-# Bootchart
-/data/bootchart(/.*)?    u:object_r:bootchart_log:s0
-
-# Themes
-/data/system/theme(/.*)?  u:object_r:theme_data_file:s0
-
-/system/bin/sysinit       u:object_r:sysinit_exec:s0
-
-/system/etc/init.d/90userinit           u:object_r:userinit_exec:s0
-/data/local/userinit.sh                 u:object_r:userinit_data_exec:s0
-
-# For minivold in recovery
-/sbin/minivold            u:object_r:vold_exec:s0
-
-#############################
-# performance-related sysfs files (CM)
-/sys/devices/system/cpu.*/cpufreq(/.*)? --  u:object_r:sysfs_devices_system_cpu:s0
-/sys/block/mmcblk.*/queue/scheduler  --    u:object_r:sysfs_devices_system_iosched:s0
-
-/data/hostapd(/.*)?         u:object_r:wifi_data_file:s0
-/data/misc/radio(/.*)?      u:object_r:radio_data_file:s0
-
-#############
-# Superuser's control sockets
-/dev/socket/su-daemon(/.*)?   u:object_r:superuser_device:s0
-
-# Expansion of these hooks is a bit unconventional
-/cache/com.cyanogenmod.keyhandler.dex   u:object_r:dalvikcache_data_file:s0
-
-# Lockscreen wallpaper
-/data/system/users/[0-9]+/keyguard_wallpaper   u:object_r:wallpaper_file:s0
-
-# Persistent properties
-/persist/properties(/.*)?         u:object_r:persist_property_file:s0
-
-# LiveDisplay
-/sys/devices/virtual/graphics/fb0/aco           u:object_r:livedisplay_sysfs:s0
-/sys/devices/virtual/graphics/fb0/cabc          u:object_r:livedisplay_sysfs:s0
-/sys/devices/virtual/graphics/fb0/rgb           u:object_r:livedisplay_sysfs:s0
-/sys/devices/virtual/graphics/fb0/sre           u:object_r:livedisplay_sysfs:s0
