@@ -199,6 +199,7 @@ WLAN_MODULES:
 	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
 
 TARGET_KERNEL_MODULES += WLAN_MODULES
-
+BOARD_USES_OPENSSL_SYMBOLS := true
 
 BLOCK_BASED_OTA=false
+WITH_GMS := true
