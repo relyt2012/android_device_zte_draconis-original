@@ -29,7 +29,7 @@
 
 # import cne init file
 on post-fs
-    export LD_PRELOAD /vendor/lib/libNimsWrap.so:/system/lib/libioprio-hack.so
+
 
 on boot
     insmod /system/lib/modules/adsprpc.ko

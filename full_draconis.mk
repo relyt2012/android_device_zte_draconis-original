@@ -293,6 +293,9 @@ PRODUCT_PACKAGES += \
     LatinIME \
     libjni_latinime
 
+PRODUCT_PACKAGES += \
+    libboringssl-compat \
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
     $(LOCAL_PATH)/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
