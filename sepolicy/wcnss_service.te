@@ -1,4 +1,2 @@
-allow wcnss_service persist_file:file r_file_perms;
-allow wcnss_service block_device:dir search;
-allow wcnss_service misc_partition:blk_file r_file_perms;
-allow wcnss_service unlabeled:file { read write getattr open };
+# wcnss - zte wifi mac file
+allow wcnss_service wcnss_persist_file:file { read getattr open };

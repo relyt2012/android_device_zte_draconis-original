@@ -1,2 +1,0 @@
-allow wpa sudaemon:unix_dgram_socket sendto;
-allow wpa wpa_device:chr_file r_file_perms;

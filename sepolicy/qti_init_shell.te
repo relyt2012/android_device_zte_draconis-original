@@ -1,18 +1,11 @@
-# Allow init to "wait" for partitions
-allow qti_init_shell block_device:dir search;
+allow qti_init_shell sysfs_battery_supply:dir search;
+allow qti_init_shell sysfs_battery_supply:file { getattr setattr };
 
-# Required for FM
-allow qti_init_shell apk_data_file:dir rw_dir_perms;
-allow qti_init_shell apk_data_file:file create_file_perms;
+# bluetooth
+allow qti_init_shell btnvtool_exec:file rx_file_perms;
+allow qti_init_shell qmuxd_socket:dir rw_dir_perms;
+allow qti_init_shell qmuxd_socket:sock_file { create setattr };
+unix_socket_connect(qti_init_shell, qmuxd, qmuxd)
 
-# Needed by init.mmi.boot.sh
-allow qti_init_shell utags_block_device:blk_file { open read };
-
-# Needed by init.mmi.touch.sh
-allow qti_init_shell blkid_exec:lnk_file { read };
-allow qti_init_shell baseband_prop:property_service set;
-allow qti_init_shell misc_partition:blk_file { read getattr open };
-allow qti_init_shell unlabeled:file getattr;
-allow qti_init_shell vfat:file { read open };
-allow qti_init_shell unlabeled:dir search;
-allow qti_init_shell vfat:dir search;
+# gsm.version.baseband property - init.zte.baseband.sh
+allow qti_init_shell radio_prop:property_service set;

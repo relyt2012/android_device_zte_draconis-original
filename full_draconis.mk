@@ -40,12 +40,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml
 
 #Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/file_contexts:root/file_contexts \
     $(LOCAL_PATH)/ramdisk/fstab.qcom:root/fstab.qcom \
     $(LOCAL_PATH)/ramdisk/init.draconis.sh:root/init.draconis.sh \
     $(LOCAL_PATH)/ramdisk/init.draconis.usb.rc:root/init.draconis.usb.rc \
@@ -63,12 +61,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
     $(LOCAL_PATH)/ramdisk/init.superuser.rc:root/init.superuser.rc \
     $(LOCAL_PATH)/ramdisk/init.target.rc:root/init.target.rc \
-    $(LOCAL_PATH)/ramdisk/property_contexts:root/property_contexts \
-    $(LOCAL_PATH)/ramdisk/sepolicy:root/sepolicy \
     $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
-# System Properties
--include $(LOCAL_PATH)/system_prop.mk
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -110,8 +104,11 @@ PRODUCT_PACKAGES += \
     camera.msm8226 \
     Camera2
 
+# Compatibility
 PRODUCT_PACKAGES += \
     libboringssl-compat \
+    libshim_qc-opt \
+    libshim_rmt_storage \
     libstlport \
 
 # Connectivity Engine support
@@ -165,14 +162,6 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     resize2fs \
     setup_fs
-
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio \
-    qcom.fmradio.xml
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -230,9 +219,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     draconisSettings
 
-PRODUCT_BOOT_JARS += \
-    qcom.fmradio
-
 PRODUCT_PACKAGES += \
     com.android.vcard
 
@@ -258,11 +244,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     wpa_supplicant_ath6kl.conf
 
-PRODUCT_PACKAGES += \
-    libantradio \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    antradio_app
 
 PRODUCT_PACKAGES += \
     giflib
