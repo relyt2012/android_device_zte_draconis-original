@@ -1,0 +1,14 @@
+[
+  {
+    "remote": "github",
+    "repository": "relyt2012/android_kernel_zte_draconis",
+    "target_path": "kernel/zte/draconis",
+    "branch": "cm13"
+  },
+   {
+    "remote": "github",
+    "repository": "relyt2012/android_vendor_zte_draconis",
+    "target_path": "vendor/zte/draconis",
+    "branch": "cm13"
+  },
+]
