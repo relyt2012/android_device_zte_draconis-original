@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+     <project path="device/zte/draconis" name="relyt2012/android_device_zte_draconis" remote="github" revision="cm13" />
+     <project path="vendor/zte/draconis" name="relyt2012/proprietary_vendor_zte_draconis" remote="github" revision="cm13" />
+     <project path="kernel/zte/draconis" name="relyt2012/android_kernel_zte_draconis" remote="github" revision="cm13" />
+     <project path="external/stlport" name="CyanogenMod/android_external_stlport" remote="github" revision="cm-13.0" />
+     <project path="external/sony/boringssl-compat" name="CyanogenMod/android_external_sony_boringssl-compat" remote="github" revision="cm-13.0" />
+</manifest>
