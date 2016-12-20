@@ -21,4 +21,4 @@
 # function: add_lunch_combo generic-eng
 
 add_lunch_combo full_draconis-eng
-add_lunch_combo cm_draconis-userdebug
+add_lunch_combo eos_draconis-userdebug
