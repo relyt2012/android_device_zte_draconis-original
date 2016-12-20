@@ -70,7 +70,16 @@ public class SunlightEnhancement {
      *
      * @return boolean False if adaptive backlight is not a dependency
      */
-    public static boolean isAdaptiveBacklightRequired() {
-        return false;
+    public static boolean isAdaptiveBacklightRequired() 
+        { return true; 
+    }
+
+   /**
+    *Wether is self managed
+    *
+    *
+    */
+    public static boolean isSelfManaged() 
+        { return false; 
     }
 }
