@@ -4,7 +4,7 @@ ui_print("::                            ::");
 ui_print("::       CyanogenMod 12.1     ::");
 ui_print("::       For ZTE ZMAX         ::");
 ui_print("::                            ::");
-ui_print("::         by hroark13        ::");
+ui_print("::   by relyt2012 & hroark13  ::");
 ui_print("::                            ::");
 ui_print("::                            ::");
 ui_print("::                            ::");
@@ -382,5 +382,5 @@ ui_print("Done");
 ui_print("Now install GAPPS");
 ui_print("Be sure to factory reset");
 ui_print("If coming from stock ROM");
-ui_print("You Fucking Freak");
+
 
