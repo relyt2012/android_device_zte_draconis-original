@@ -58,6 +58,7 @@ ro.min_freq=787000
 # RIL
 rild.libpath=/system/vendor/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
+ro.radio.networkmode=enable
 ro.telephony.default_network=10
 ro.ril.def.preffered.network=10
 telephony.lteOnCdmaDevice=1
