@@ -1,0 +1,15 @@
+[
+  {
+    "remote":      "github",
+    "repository":  "Euphoria-OS-Legacy/android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "revision":    "lollipop-5.1",
+  },
+  {
+    "remote":      "github",
+    "repository": "android_kernel_zte_draconis",
+    "target_path": "kernel/zte/draconis",
+    "revision":    "cm12.1",
+  },
+
+]
