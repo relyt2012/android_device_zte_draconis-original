@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>   
-     <project path="device/qcom/common" name="LineageOS/android_device_qcom_common" remote="github" revision="cm-12.1" />
+     <project path="device/qcom/common" name="relyt2012/android_device_qcom_common" remote="github" revision="cm-12.1" />
      <project path="device/zte/draconis" name="relyt2012/android_device_zte_draconis" remote="github" revision="cm12.1" />
      <project path="vendor/zte/draconis" name="relyt2012/android_vendor_zte_draconis" remote="github" revision="cm12.1" />
      <project path="kernel/zte/draconis" name="relyt2012/android_kernel_zte_draconis" remote="github" revision="cm12.1" />
