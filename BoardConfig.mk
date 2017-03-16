@@ -61,7 +61,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/mmi_lpm/lpm_mode
 
 # CMHW
-BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
+#BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/cmhw/
 
 # Display
 BOARD_EGL_CFG := $(LOCAL_PATH)/prebuilts/adreno/lib/egl/egl.cfg
@@ -210,4 +210,4 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # Releasetools
 TARGET_PROVIDES_RELEASETOOLS := true
-TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/zte/draconis/releasetools/ota_from_target_files
+

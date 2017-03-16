@@ -359,7 +359,7 @@ $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := draconis
-PRODUCT_NAME := full_draconis
+PRODUCT_NAME := aosp_draconis
 PRODUCT_BRAND := zte
 PRODUCT_MODEL := draconis
 PRODUCT_MANUFACTURER := zte
